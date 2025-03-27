@@ -1,67 +1,77 @@
-#this is a balckjack cheat sheet , how to use the app, asked you a question "what are you cards". you replied your cards and it will
-#let you know what to do next based on simple stradgy 
+# a Blackjack strategy guide to help players decide their next move based on their hand. There are a few things to tweak to make it work better:
+def display_menu():
+    print("\n\033[1;32m=====================")  # Green for the menu header
+    print("  🃏 \033[1;34mBlackjack Helper \033[1;32m🃏")  # Blue for "Blackjack Helper"
+    print("=====================\033[0m")  # Reset color
+    print("\033[1;33m1. Enter Cards\033[0m")  # Yellow for option 1
+    print("\033[1;31m2. Exit\033[0m")  # Red for option 2
+    print("=====================\033[0m")  # Reset color
 
+def blackjack_strategy():
+    while True:
+        # Main menu display
+        display_menu()
+        
+        # Get player choice
+        choice = input("\033[1;36mChoose an option (1 or 2): \033[0m")  # Cyan for prompt
+        
+        if choice == '1':
+            print('\n\033[1;35mEnter your cards (e.g., "A 6", "A 8", "A 9"): \033[0m')  # Magenta for input prompt
+            cards = input().strip().upper()
 
-print('what are your cards?: ')
-cards = input()
+            # Handling pairs
+            if cards in ['A A', '8 8']:
+                print('\033[1;33mSplit\033[0m')  # Yellow for "Split"
+            elif cards == '10 10':
+                print("\033[1;33mDon't split\033[0m")  # Yellow for "Don't split"
+            elif cards == '9 9':
+                print('\033[1;34mSplit against 2-9, except for 7. Otherwise, STAND\033[0m')  # Blue for strategy
+            elif cards == '4 4':
+                print('\033[1;34mSplit against 5 & 6, otherwise HIT\033[0m')
+            elif cards == '2 2':
+                print('\033[1;34mSplit against 2-7, otherwise HIT\033[0m')
 
-#pairs 
+            # Hard totals
+            elif cards == '16':
+                print('\033[1;31mSurrender against 9-A, otherwise HIT\033[0m')  # Red for surrender
+            elif cards == '15':
+                print('\033[1;31mSurrender against 10, otherwise HIT\033[0m')
+            elif cards in ['17', '18', '19', '20', '21']:
+                print('\033[1;32mSTAND\033[0m')  # Green for STAND
+            elif cards in ['13', '14', '15', '16']:
+                print('\033[1;33mStand against 2-6, HIT against 7-A\033[0m')  # Yellow for strategy
+            elif cards == '12':
+                print('\033[1;33mStand against 4-6, HIT against everything else\033[0m')
+            elif cards == '11':
+                print('\033[1;32mDouble Down\033[0m')  # Green for Double Down
+            elif cards == '10':
+                print('\033[1;32mDouble against 2-9, otherwise HIT\033[0m')
+            elif cards == '9':
+                print('\033[1;32mDouble against 3-6, otherwise HIT\033[0m')
+            elif cards in ['8', '7', '6', '5', '4', '3', '2']:
+                print('\033[1;31mHIT\033[0m')  # Red for HIT
 
-if (cards == 'AA', 'aa'):
-    print ('Always Split Aces') 
-if (cards == '1010'):
-    print('Never Split 10')
-if (cards == '99'):
-    print('Split against dealer 2-9 ,expt for 7,otherwise STAND')
-if (cards == '88'):
-    print('Always split 88')
-if (cards == '44'):
-    print('Split against dealer 5 & 6, otherwise hit')
-if (cards == '22'):
-    print('Split against dealer 2-7, otherwse hit')
+            # Soft hands (Aces counted as 11)
+            elif cards in ['A 8', 'A 9']:
+                print('\033[1;32mSTAND\033[0m')  # Green for STAND
+            elif cards == 'A 7':
+                print('\033[1;32mDouble against 2-6, Stand against 7-8, HIT against 9-A\033[0m')
+            elif cards in ['A 6', 'A 5']:
+                print('\033[1;32mDouble against 3-6, otherwise HIT\033[0m')
+            elif cards in ['A 4', 'A 3']:
+                print('\033[1;32mDouble against 4-6, otherwise HIT\033[0m')
+            elif cards in ['A 2']:
+                print('\033[1;32mDouble against 5-6, otherwise HIT\033[0m')
 
-#surrenders
-if (cards == '16'):
-    print('Surrender against 9-A')
-if (cards == '15'):
-    print('surrender against 10')
-if (cards == '17', '18', '19', '20', '21'):
-    print('STAND')
-if (cards == '13', '14', '15', '16'):
-    print('Stand against 2-6, HIT against 7-Ace')
-if (cards == '12'):
-    print('Stand against 4-6, HIT against everything else ')
-if (cards == '11'):
-    print('Double Down')
-if (cards == '10'):
-    print('Double against 2-9') 
-if (cards == '9'):
-    print('Double against 3-6')
-if (cards <= '8'):
-    print('Hit')
+            else:
+                print('\033[1;31mInvalid input, try again.\033[0m')  # Red for invalid input
+        
+        elif choice == '2':
+            print("\n\033[1;35mThanks for using Blackjack Helper! 🎲\033[0m")  # Magenta for goodbye message
+            break
+        
+        else:
+            print("\033[1;31mInvalid option, please choose 1 or 2.\033[0m")  # Red for invalid option
 
-elif (cards <= 0):
-    print('try again')
-
-#SOFT HANDS 
-    
-
-    
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
+# Start the game
+blackjack_strategy()
