@@ -1,4 +1,5 @@
 # a Blackjack strategy guide to help players decide their next move based on their hand. There are a few things to tweak to make it work better:
+# Written by JetiTokyo 3/20/25 5:48 pm
 def display_menu():
     print("\n\033[1;32m=====================")  # Green for the menu header
     print("  🃏 \033[1;34mBlackjack Helper \033[1;32m🃏")  # Blue for "Blackjack Helper"
@@ -9,6 +10,7 @@ def display_menu():
 
 def blackjack_strategy():
     while True:
+
         # Main menu display
         display_menu()
         
